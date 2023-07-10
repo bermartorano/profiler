@@ -16,11 +16,8 @@ def test_show_disk_usage_with_context(capsys, tmp_path):
 
     mock_file_1.touch()
     mock_file_2.touch()
-
-    with open(mock_file_1, 'w') as file1:
-        file1.write('este é o primeiro arquivo de teste\n')
-    with open(mock_file_2, 'w') as file2:
-        file2.write('este é o segundo arquivo de teste\nCom duas linhas\n')
+    mock_file_1.write_text('este é o primeiro arquivo de teste\n')
+    mock_file_2.write_text('este é o primeiro arquivo de teste\naaaa\n')
 
     file1_size = os.path.getsize(mock_file_1)
     file2_size = os.path.getsize(mock_file_2)
