@@ -1,5 +1,6 @@
 import os
 from pro_filer.actions.main_actions import show_disk_usage  # NOQA
+from pro_filer.cli_helpers import _get_printable_file_path
 
 
 def test_show_disk_usage_empty_context(capsys):
@@ -24,8 +25,10 @@ def test_show_disk_usage_with_context(capsys, tmp_path):
     total_size = file1_size + file2_size
     file_2_percent = int(file2_size/total_size * 100)
     file_1_percent = int(file1_size/total_size * 100)
-    file1_prnt = '/tmp/pytest-of-bernardo/pyt...age_with_cont0/mock_file_1.txt'
-    file2_prnt = '/tmp/pytest-of-bernardo/pyt...age_with_cont0/mock_file_2.txt'
+    # file1_prnt='/tmp/pytest-of-bernardo/pyt...age_with_cont0/mock_file_1.txt'
+    # file2_prnt='/tmp/pytest-of-bernardo/pyt...age_with_cont0/mock_file_2.txt'
+    file1_prnt = _get_printable_file_path(f'{mock_file_1}')
+    file2_prnt = _get_printable_file_path(f'{mock_file_2}')
 
     context = {'all_files': [f'{mock_file_1}', f'{mock_file_2}']}
     show_disk_usage(context)
